@@ -1,19 +1,15 @@
-/* ===== Premium theme: typography + motion + polish (drop-in) ===== */
-
-/* 1) Pro typography (Inter) */
+/* ===== Premium theme v2: typography + motion + polish ===== */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
 
 :root{
-  /* Palette */
   --bg: #f6f8fb;
   --bg-hero: linear-gradient(180deg,#eef3ff 0%, #ffffff 65%);
   --text: #0e1116;
   --muted: #6b7280;
-  --accent: #0a84ff; /* swap to #2563eb (indigo), #10b981 (emerald), #7c3aed (purple) */
+  --accent: #0a84ff; /* tweak to #2563eb (indigo), #10b981 (emerald), #7c3aed (purple) */
   --border: #e6e7ec;
   --card: #ffffff;
 
-  /* Radii & shadows */
   --radius-xl: 18px;
   --radius: 12px;
   --shadow-strong: 0 18px 50px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.05);
@@ -80,6 +76,9 @@ nav a::after{
 }
 nav a:hover{ transform: translateY(-1px); }
 nav a:hover::after{ transform: scaleX(1); }
+/* Active link support (add class="active" to the current page link) */
+nav a.active{ color: var(--accent); font-weight:600; }
+nav a.active::after{ transform: scaleX(1); }
 
 /* Main layout */
 main{
@@ -115,7 +114,7 @@ main > section:nth-of-type(4){ animation-delay: .24s; }
 main > section:nth-of-type(5){ animation-delay: .30s; }
 main > section:nth-of-type(6){ animation-delay: .36s; }
 
-/* Headings */
+/* Headings & text */
 h2{
   margin:0 0 10px; font-weight:700;
   font-size: clamp(20px, 3vw, 28px); letter-spacing:-0.01em;
@@ -123,6 +122,16 @@ h2{
 h3{ margin:0 0 8px; font-size: clamp(18px, 2.4vw, 22px); }
 p{ margin:10px 0 0; color:#171a22; }
 .desc{ color: var(--muted); }
+
+/* Blockquote (for your coaching script) */
+blockquote{
+  margin: 12px 0 0;
+  padding: 14px 16px;
+  border-left: 4px solid var(--accent);
+  background: #f3f7ff;
+  border-radius: 8px;
+  color: #0f172a;
+}
 
 /* Media styles */
 img{
@@ -134,8 +143,10 @@ img{
 }
 img:hover{ transform: translateY(-2px); }
 
+/* Responsive, tall iframe for PDFs */
 iframe{
-  width:100%; height: 720px;
+  width:100%;
+  height: min(78vh, 820px);
   border:1px solid var(--border);
   border-radius: 12px;
   box-shadow: var(--shadow);
@@ -196,6 +207,11 @@ footer{
   to{ opacity:1; transform: translateY(0); }
 }
 
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  *{ animation: none !important; transition: none !important; }
+}
+
 /* Dark mode */
 @media (prefers-color-scheme: dark){
   :root{
@@ -209,3 +225,4 @@ footer{
   th{ background:#14161b; }
   a.btn{ background:#12151a; color: var(--text); }
 }
+
